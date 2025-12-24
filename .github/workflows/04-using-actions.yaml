@@ -11,7 +11,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@latest
         with: 
-          node-version: '20.x'
+          node-version: '20.19.5'
       - name: Install Dependencies
         run: npm ci
         working-directory: 04-using-actions
