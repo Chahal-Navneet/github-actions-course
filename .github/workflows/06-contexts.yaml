@@ -8,12 +8,13 @@ on:
         default: false
         description: enable debug
 run-name: 06 Context | DEBUG -  ${{ inputs.debug }}
-env:
-  MY_WORKFLOW_VAR: workflow
-  MY_OVERWRITTEN_VAR: workflow
+
 jobs:
   echo-data:
     runs-on: ubuntu-latest
+    env:
+      MY_WORKFLOW_VAR: workflow
+      MY_OVERWRITTEN_VAR: workflow
     steps:
       - name: Display Information
         run: |
@@ -29,7 +30,7 @@ jobs:
           echo " Variable value: ${{ vars.MY_VAR }}"
       - name: Print Env Variables
         run: |
-          echo "Workflow env: $MY_WORKFLOW_VAR"
-          echo "Overwritten var: $MY_OVERWRITTEN_VAR"
+          echo "Workflow env: ${{ env.MY_WORKFLOW_VAR }}"
+          echo "Overwritten var: ${{ env.MY_OVERWRITTEN_VAR }}"
       - name: Empty
         run: echo "Hello"
