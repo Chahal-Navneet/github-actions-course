@@ -4,7 +4,7 @@ on:
 env:
   WORKFLOW_VAR: "I am workflow env var"
   OVERWRITTEN_VAR: "I will be overwritten"
-  UNDEFINED_VAR_WITH_DEFAULT: vars.UNDEFINED_VAR | "default value" 
+
 
 jobs:
   echo:
@@ -47,4 +47,4 @@ jobs:
     steps:
       - name: Print Undefined Variables
         run: | 
-          echo "Org var: $UNDEFINED_VAR_WITH_DEFAULT"
+          echo "Org var: ${{ vars.UNDEFINED_VAR || 'default value' }} "
