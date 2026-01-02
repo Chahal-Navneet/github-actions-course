@@ -6,6 +6,14 @@ on:
         type: boolean
         default: true
         description: Enable Cache
+      node-version:
+        type: choice
+        options:
+          - '19.x'
+          - '20.x'
+          - '22.x'
+        default: '22.x'
+        description: Select Node Version
 
 jobs:
   build:
@@ -19,10 +27,18 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with: 
-          node-version: '22.x'
+          node-version: ${{ inputs.node-version }}
       - name: Upgrade npm to v11
         run: npm install -g npm@11
-      - name: Install Dependencies        
+      - name: Download cached dependencies
+        id: cache
+        if: inputs.use-cache
+        uses: actions/cache@v3
+        with: 
+          path: 13-caching/react-app/node-modules
+          key: deps-node-modules-${{ hashFiles('13-caching/react-app/package-lock.json') }}
+      - name: Install Dependencies   
+        if: steps.cache.outputs.cache-hit != 'true'    
         run: npm ci
       - name: Testing
         run: npm run test
