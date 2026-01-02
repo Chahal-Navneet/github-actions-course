@@ -28,15 +28,15 @@ jobs:
         uses: actions/setup-node@v3
         with: 
           node-version: ${{ inputs.node-version }}
-      - name: Upgrade npm to v11
-        run: npm install -g npm@11
       - name: Download cached dependencies
         id: cache
         if: inputs.use-cache
         uses: actions/cache@v3
         with: 
-          path: node-modules
+          path: 13-caching/react-app/node-modules
           key: deps-node-modules-${{ hashFiles('13-caching/react-app/package-lock.json') }}
+      - name: Upgrade npm to v11
+        run: npm install -g npm@11
       - name: Install Dependencies   
         if: steps.cache.outputs.cache-hit != 'true'    
         run: npm ci
