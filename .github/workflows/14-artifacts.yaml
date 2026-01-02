@@ -32,7 +32,7 @@ jobs:
       - name: Build code
         run: npm run build
       - name: Upload build files
-        uses: actions/upload-artifacts@v4
+        uses: actions/upload-artifact@v4
         with:
           name: app
           path: 14-artifacts/react-app/build
@@ -42,11 +42,11 @@ jobs:
       test-build
     steps:
       - name: Download build files
-        uses: actions/dowload-artifacts@v4
+        uses: actions/dowload-artifact@v4
         with:
           name: app
           path: build
       - name: Show folder structure
         run: ls -R
-        
+
   
