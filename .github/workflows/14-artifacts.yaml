@@ -20,7 +20,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: 14-artifacts/react-app/node_modules
-          key: deps-node-modules-${{hashFiles('14-artifacats/react-app/package-lock.json')}}
+          key: deps-node-modules-${{hashFiles('14-artifacts/react-app/package-lock.json')}}
       - name: Upgrade npm to v11
         if: steps.cache.outputs.cache-hit != 'true' 
         run: npm install -g npm@11
