@@ -42,7 +42,7 @@ jobs:
       test-build
     steps:
       - name: Download build files
-        uses: actions/dowload-artifact@v4
+        uses: actions/download-artifact@v4
         with:
           name: app
           path: build
